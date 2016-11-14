@@ -1,0 +1,76 @@
+<h1>Contacts</h1>
+<!--<div ng-show="authenticated">-->
+<div>
+
+</div>
+<div>
+
+    <section layout="row" flex>
+
+        <md-sidenav
+                class="md-sidenav-left"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-md')"
+                md-whiteframe="4">
+
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Contacts</h1>
+            </md-toolbar>
+            <md-content layout-padding ng-controller="LeftCtrl">
+                <div ng-if="status" id="status">
+                    <b layout="row" layout-align="center center" class="md-padding">
+                        {{status}}
+                    </b>
+                </div>
+                <md-list-item ng-repeat="contact in contacts" ng-click="viewContact(contact.id, $event)">
+                    <md-icon md-svg-src="icons/account.svg"></md-icon>
+                    <p>{{contact.firstName}}</p>
+                </md-list-item>
+                <md-button ng-click="addContactDialog($event)">
+                    <md-icon md-svg-src="icons/add.svg"></md-icon>
+                </md-button>
+                <md-button ng-click="close()" hide-gt-md>
+                    <md-icon md-svg-src="icons/done.svg"></md-icon>
+                </md-button>
+                <p hide show-gt-md>
+                    This sidenav is locked open on your device. To go back to the default behavior,
+                    narrow your display.
+                </p>
+            </md-content>
+
+        </md-sidenav>
+
+        <md-content flex layout-padding>
+
+            <div layout="column" layout-align="top left">
+
+                <div>
+                    <md-button ng-click="toggleLeft()"
+                               class="md-primary" hide-gt-md>
+                        <md-icon md-svg-src="icons/contacts.svg"></md-icon
+                    </md-button>
+                </div>
+                <div ng-if="contact" id="contact">
+                    <div flex-xs flex-gt-xs="50" layout="column">
+                        <md-card md-theme="default">
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">{{contact.firstName}} {{contact.lastName}}</span>
+                                    <span class="md-subhead">{{contact.emailAddress}}</span>
+                                </md-card-title-text>
+                                <md-card-title-media>
+                                    <div class="md-media-lg card-media"></div>
+                                </md-card-title-media>
+                            </md-card-title>
+                            <md-card-actions layout="row" layout-align="end center">
+                                <md-button>Delete</md-button>
+                                <md-button>Edit</md-button>
+                                <md-button>Add Activity</md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </div>
+                </div>
+                <div flex></div>
+        </md-content>
+    </section>
+</div>
